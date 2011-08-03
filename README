@@ -1,3 +1,15 @@
+LAP
 
-placeholder until lap is imported
+Install using rcmake
+
+ruby rcmake.rb
+
+LAP is a work in progress*, but provides a set of primitive operations for processing triangles meshes.
+Application wise lapquery is probably the most interesting atm.
+
+In time LAP will live up to its acronym as a full asset pipeline, just no guarantees about it being on 
+github.
+
+*and partly an experiment, 'what if I rewrote some existing code more generically?' behold the result, 
+lots and lots of little functions and adapters and massive improvement on its counterpart.
 
