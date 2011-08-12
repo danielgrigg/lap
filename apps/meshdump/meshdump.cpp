@@ -2,8 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <lap/ObjModel.h>
-#include <lap/MeshAsset.h>
+#include <lap/lap.h>
 #include <boost/lambda/lambda.hpp>
 #include <boost/lambda/bind.hpp>
 
@@ -70,6 +69,7 @@ void doMesh(shared_ptr<V> mesh)
   }
 }
 
+
 int main(int argc, char **argv)
 {
   if (argc < 2)
@@ -86,12 +86,13 @@ int main(int argc, char **argv)
     return 1;
   }
   cout << "vertexFormat: " << model->vertexFormat() << endl;
+//  processModel(model, doMesh);
   switch (model->vertexFormat())
   {
-    case obj::kPosition: doMesh(meshPFromObj(model)); break;
-    case obj::kPositionUV: doMesh(meshPTFromObj(model)); break;
-    case obj::kPositionNormal: doMesh(meshPNFromObj(model)); break;
-    case obj::kPositionUVNormal: doMesh(meshPTNFromObj(model)); break;
+    case obj::kPosition: doMesh(meshFromObj<VertexP>(model)); break;
+    case obj::kPositionUV: doMesh(meshFromObj<VertexPT>(model)); break;
+    case obj::kPositionNormal: doMesh(meshFromObj<VertexPN>(model)); break;
+    case obj::kPositionUVNormal: doMesh(meshFromObj<VertexPTN>(model)); break;
     default: cerr << "Invalid vertex format" << endl; break;
   }
   return 0;

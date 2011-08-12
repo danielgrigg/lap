@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <lap/ObjModel.h>
-#include <lap/MeshAsset.h>
+#include <lap/lap.h>
+#include <boost/function.hpp>
 
 using namespace lap;
 using namespace std;
@@ -48,10 +48,10 @@ int main(int argc, char **argv)
 
   switch (model->vertexFormat())
   {
-    case obj::kPosition: extractGroups(meshPFromObj(model)); break;
-    case obj::kPositionUV: extractGroups(meshPTFromObj(model)); break;
-    case obj::kPositionNormal: extractGroups(meshPNFromObj(model)); break;
-    case obj::kPositionUVNormal: extractGroups(meshPTNFromObj(model)); break;
+    case obj::kPosition: extractGroups(meshFromObj<VertexP>(model)); break;
+    case obj::kPositionUV: extractGroups(meshFromObj<VertexPT>(model)); break;
+    case obj::kPositionNormal: extractGroups(meshFromObj<VertexPN>(model)); break;
+    case obj::kPositionUVNormal: extractGroups(meshFromObj<VertexPTN>(model)); break;
     default: cerr << "Invalid vertex format" << endl; break;
   }
   return 0;

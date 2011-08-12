@@ -2,8 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <lap/ObjModel.h>
-#include <lap/MeshAsset.h>
+#include <lap/lap.h>
 
 using namespace lap;
 using namespace std;
@@ -59,10 +58,10 @@ int main(int argc, char **argv)
 
   switch (model->vertexFormat())
   {
-    case obj::kPosition: getInfo(meshPFromObj(model)); break;
-    case obj::kPositionUV: getInfo(meshPTFromObj(model)); break;
-    case obj::kPositionNormal: getInfo(meshPNFromObj(model)); break;
-    case obj::kPositionUVNormal: getInfo(meshPTNFromObj(model)); break;
+    case obj::kPosition: getInfo(meshFromObj<VertexP>(model)); break;
+    case obj::kPositionUV: getInfo(meshFromObj<VertexPT>(model)); break;
+    case obj::kPositionNormal: getInfo(meshFromObj<VertexPN>(model)); break;
+    case obj::kPositionUVNormal: getInfo(meshFromObj<VertexPTN>(model)); break;
     default: cerr << "Invalid vertex format" << endl; break;
   }
   return 0;

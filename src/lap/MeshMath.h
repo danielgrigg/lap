@@ -8,6 +8,7 @@
 #include <boost/lambda/bind.hpp>
 #include <cfloat>
 #include <tr1/unordered_map>
+#include <vector>
 
 namespace lap 
 {
@@ -129,6 +130,13 @@ namespace lap
       return Range<T>((T*)p, elements / (sizeof(T) / sizeof(U)));
     }
 
+  template <typename I>
+    Range<I> allocateRange(std::vector<uint32_t>& dest, size_t length)
+    {
+      const uint32_t components = sizeof(I) / sizeof(uint32_t);
+      dest.resize(components * length);
+      return make_range<I>(&dest[0], dest.size());
+    }
 
   typedef vec<uint32_t,3> uint3;
   typedef vec<uint32_t,2> uint2;

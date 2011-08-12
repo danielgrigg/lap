@@ -3,8 +3,7 @@
 #include <vector>
 #include <fstream>
 
-#include <lap/ObjModel.h>
-//#include "../shared/MeshCompute.h"
+#include <lap/lap.h>
 
 using namespace lap;
 using namespace std;
